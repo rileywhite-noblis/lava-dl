@@ -99,6 +99,10 @@ def optimize_weight_bits(weight: np.ndarray) -> Tuple[
     """
     max_weight = np.max(weight)
     min_weight = np.min(weight)
+    if min_weight == 0:
+        min_weight += 1e-12
+    if max_weight == 0:
+        max_weight += 1e-12
     if max_weight > 254 and min_weight < 0:
         print(f'[WARNING] weight matrix cannot be optimized to fit in synapse.')
         print(f'         (max weight too large: {max_weight}, clipped to 254)')

@@ -575,6 +575,8 @@ class Network(AbstractProcess):
                     input_message_bits = layer.output_message_bits
                 elif 'shape' in layer_config[i].keys():
                     self.input_shape = tuple(layer_config[i]['shape'][::-1])
+                if len(layers) > 1:
+                    layers[-2].out.connect(layers[-1].inp)
 
             elif layer_type == 'conv':
                 if len(layers) > 0:
