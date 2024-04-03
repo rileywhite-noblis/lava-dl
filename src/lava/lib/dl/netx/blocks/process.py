@@ -103,6 +103,7 @@ class Input(AbstractBlock):
         # The input must be handled through neuron's bias.
         self.inp = InPort(shape=self.neuron.a_in.shape)
         self.out = OutPort(shape=self.neuron.s_out.shape)
+        self.inp.connect(self.neuron.a_in)
         self.neuron.s_out.connect(self.out)
 
         self._clean()
